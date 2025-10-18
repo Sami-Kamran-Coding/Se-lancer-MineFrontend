@@ -271,151 +271,176 @@ export default function BrandPage() {
   };
 
   return (
-    <div className="mt-20 px-6 md:px-12 lg:px-20 flex flex-col lg:flex-row gap-8">
-      {/* ================= MAIN SECTION ================= */}
-      <div className="flex-1">
-        {/* 🔍 Search Bar */}
-        <div className="flex gap-3 mb-6">
-          <Input
-            placeholder="Search influencers by name or bio..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="flex-1"
-          />
-          <Button onClick={handleSearch}>Search</Button>
-          {searchTerm && (
-            <Button
-              variant="outline"
-              onClick={handleClearSearch}
-              className="text-gray-700 border-gray-300"
-            >
-              Clear
-            </Button>
-          )}
-        </div>
-
-        {/* 🎨 Influencers Grid */}
-        {loading ? (
-          <div className="flex justify-center items-center h-64">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
-          </div>
-        ) : influencers.length === 0 ? (
-          <p className="text-gray-600">No influencers found.</p>
-        ) : (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50 to-white pt-24 pb-16 px-6 md:px-12 lg:px-20">
+  <div className="flex flex-col lg:flex-row gap-10">
+    {/* ================= MAIN SECTION ================= */}
+    <div className="flex-1">
+      {/* 🔍 Search Bar */}
+      <div className="flex flex-wrap gap-3 mb-8">
+        <Input
+          placeholder="Search influencers..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="flex-1 rounded-xl border-gray-300 focus:ring-2 focus:ring-indigo-500"
+        />
+        <Button
+          onClick={handleSearch}
+          className="bg-indigo-600 hover:bg-indigo-700 transition"
+        >
+          Search
+        </Button>
+        {searchTerm && (
+          <Button
+            variant="outline"
+            onClick={handleClearSearch}
+            className="text-gray-700 border-gray-300 hover:bg-gray-100"
           >
-            {influencers.map((inf) => (
-              <Link key={inf._id} href={`/influencer/${inf._id}`}>
-                <Card className="hover:shadow-lg transition rounded-2xl cursor-pointer">
-                  <CardContent className="p-4 flex flex-col items-center text-center">
-                    <img
-                      src={inf.userId?.profilePicture || "/default-avatar.png"}
-                      alt={inf.userId?.name}
-                      className="w-20 h-20 rounded-full object-cover mb-3"
-                    />
-                    <h3 className="font-semibold text-lg">
-                      {inf.userId?.name}
-                    </h3>
-                    <p className="text-sm text-gray-500">
-                      {inf.category?.join(", ") || "Uncategorized"}
-                    </p>
-                    <p className="text-sm mt-2">
-                      IG: {inf.followers?.instagram || 0}
-                    </p>
-                    {inf.verified && (
-                      <span className="text-blue-600 text-xs font-semibold mt-1">
-                        ✔ Verified
-                      </span>
-                    )}
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
-          </motion.div>
+            Clear
+          </Button>
         )}
       </div>
 
-      {/* ================= FILTER SIDEBAR ================= */}
-      <aside className="w-full lg:w-72 bg-white shadow rounded-2xl p-6 h-fit">
-        <h2 className="font-semibold text-lg mb-4">Filters</h2>
-        <div className="space-y-4">
-          {/* Category Dropdown */}
-          <div>
-            <label className="block text-sm font-medium mb-1">Category</label>
-            <select
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              className="border border-gray-300 rounded-md w-full p-2"
-            >
-              <option value="">All Categories</option>
-              {categories.map((cat: string) => (
-                <option key={cat} value={cat}>
-                  {cat}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* Verified Filter */}
-          <div>
-            <label className="block text-sm font-medium mb-1">Verified</label>
-            <select
-              value={verified}
-              onChange={(e) => setVerified(e.target.value)}
-              className="border border-gray-300 rounded-md w-full p-2"
-            >
-              <option value="">Any</option>
-              <option value="true">Verified</option>
-              <option value="false">Unverified</option>
-            </select>
-          </div>
-
-          {/* Platform Filter */}
-          <div>
-            <label className="block text-sm font-medium mb-1">Platform</label>
-            <select
-              value={platform}
-              onChange={(e) => setPlatform(e.target.value)}
-              className="border border-gray-300 rounded-md w-full p-2"
-            >
-              <option value="">All</option>
-              <option value="instagram">Instagram</option>
-              <option value="tiktok">TikTok</option>
-              <option value="youtube">YouTube</option>
-            </select>
-          </div>
-
-          {/* Followers Filter */}
-          <div>
-            <label className="block text-sm font-medium mb-1">
-              Minimum Followers
-            </label>
-            <Input
-              placeholder="e.g. 10000"
-              type="number"
-              value={minFollowers}
-              onChange={(e) => setMinFollowers(e.target.value)}
-            />
-          </div>
-
-          {/* Filter Buttons */}
-          <div className="flex gap-3 mt-3">
-            <Button onClick={handleFilter} className="flex-1">
-              Apply
-            </Button>
-            <Button
-              variant="outline"
-              onClick={handleResetFilters}
-              className="flex-1 border-gray-300 text-gray-700"
-            >
-              Reset
-            </Button>
-          </div>
+      {/* 🎨 Influencers Grid */}
+      {loading ? (
+        <div className="flex justify-center items-center h-64">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
         </div>
-      </aside>
+      ) : influencers.length === 0 ? (
+        <p className="text-gray-600 text-center mt-10 text-lg">
+          No influencers found 💭
+        </p>
+      ) : (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {influencers.map((inf) => (
+            <Link key={inf._id} href={`/influencer/${inf._id}`}>
+              <Card className="bg-white/70 backdrop-blur-md border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 rounded-2xl cursor-pointer">
+                <CardContent className="p-5 flex flex-col items-center text-center">
+                  <img
+                    src={inf.userId?.profilePicture || "/default-avatar.png"}
+                    alt={inf.userId?.name}
+                    className="w-24 h-24 rounded-full object-cover mb-3 shadow"
+                  />
+                  <h3 className="font-semibold text-lg text-slate-800">
+                    {inf.userId?.name}
+                  </h3>
+                  <p className="text-sm text-gray-500 mt-1">
+                    {inf.category?.join(", ") || "Uncategorized"}
+                  </p>
+                  <p className="text-sm mt-2 text-slate-700">
+                    IG Followers:{" "}
+                    <span className="font-medium">
+                      {inf.followers?.instagram || 0}
+                    </span>
+                  </p>
+                  {inf.verified && (
+                    <span className="text-indigo-600 text-xs font-semibold mt-2">
+                      ✔ Verified
+                    </span>
+                  )}
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+        </motion.div>
+      )}
     </div>
-  );
+
+    {/* ================= FILTER SIDEBAR ================= */}
+    <aside className="w-full lg:w-72 bg-white/80 backdrop-blur-md border border-gray-200 shadow-lg rounded-2xl p-6 h-fit">
+      <h2 className="font-semibold text-lg text-slate-800 mb-5">
+        Filters 🎯
+      </h2>
+      <div className="space-y-5">
+        {/* Category Dropdown */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Category
+          </label>
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            className="border border-gray-300 rounded-lg w-full p-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+          >
+            <option value="">All Categories</option>
+            {categories.map((cat: string) => (
+              <option key={cat} value={cat}>
+                {cat}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Verified Filter */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Verified
+          </label>
+          <select
+            value={verified}
+            onChange={(e) => setVerified(e.target.value)}
+            className="border border-gray-300 rounded-lg w-full p-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+          >
+            <option value="">Any</option>
+            <option value="true">Verified</option>
+            <option value="false">Unverified</option>
+          </select>
+        </div>
+
+        {/* Platform Filter */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Platform
+          </label>
+          <select
+            value={platform}
+            onChange={(e) => setPlatform(e.target.value)}
+            className="border border-gray-300 rounded-lg w-full p-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+          >
+            <option value="">All</option>
+            <option value="instagram">Instagram</option>
+            <option value="tiktok">TikTok</option>
+            <option value="youtube">YouTube</option>
+          </select>
+        </div>
+
+        {/* Followers Filter */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Minimum Followers
+          </label>
+          <Input
+            placeholder="e.g. 10000"
+            type="number"
+            value={minFollowers}
+            onChange={(e) => setMinFollowers(e.target.value)}
+            className="rounded-lg focus:ring-2 focus:ring-indigo-500"
+          />
+        </div>
+
+        {/* Filter Buttons */}
+        <div className="flex gap-3 mt-4">
+          <Button
+            onClick={handleFilter}
+            className="flex-1 bg-indigo-600 hover:bg-indigo-700 transition text-white"
+          >
+            Apply
+          </Button>
+          <Button
+            variant="outline"
+            onClick={handleResetFilters}
+            className="flex-1 border-gray-300 text-gray-700 hover:bg-gray-100"
+          >
+            Reset
+          </Button>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+  )
 }

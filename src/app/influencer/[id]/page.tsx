@@ -141,7 +141,7 @@ export default function InfluencerDetailPage() {
   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
 
   {/* Profile Picture */}
-  <div className="absolute top-7 left-1/2 transform -translate-x-1/2 translate-y-1/2">
+  <div className="absolute top-8 z-40 left-1/12 transform -translate-x-1/2 translate-y-1/2">
     <img
       src={user?.profilePicture || "/default-avatar.png"}
       alt={user?.name || "User"}
