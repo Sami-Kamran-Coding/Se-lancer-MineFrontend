@@ -42,7 +42,7 @@ export default function DashboardPage() {
         <option value="">Select Role</option>
         <option value="influencer">Influencer</option>
         <option value="brand">Brand</option>
-        <option value="admin">Admin</option>
+        {/* <option value="admin">Admin</option> */}
       </select>
 
       <Button

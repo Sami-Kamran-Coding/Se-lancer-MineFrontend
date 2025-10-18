@@ -79,7 +79,7 @@ export default function RegisterPage() {
           >
             <option value="influencer">Influencer</option>
             <option value="brand">Brand</option>
-            <option value="admin">Admin</option>
+            {/* <option value="admin">Admin</option> */}
           </select>
 
           <Button

@@ -6,13 +6,14 @@ import { setToken, verifyToken } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/context/AuthContext";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-
+  const { login } = useAuth();
   const handleLogin = async () => {
     if (!email || !password) return alert("Please fill all fields");
     setLoading(true);
@@ -24,6 +25,7 @@ export default function LoginPage() {
       });
 
       setToken(res.data.token);
+      login(res.data.user);
 
       // ✅ Verify token right after setting it
       const user = await verifyToken();

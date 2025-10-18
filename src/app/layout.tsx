@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { AuthProvider } from "@/context/AuthContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,9 +29,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn("bg-gradient-to-br from-slate-50 to-slate-200 min-h-screen flex flex-col")}>
-        <Header />
-        <main className="flex-grow">{children}</main>
-        <Footer />
+          <AuthProvider>
+          <Header />
+          <main className="flex-grow">{children}</main>
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );

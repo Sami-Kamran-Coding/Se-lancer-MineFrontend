@@ -13,6 +13,8 @@ interface PricingItem {
   type: string;
   price: number;
 }
+export const categories = ["Fashion", "Lifestyle", "Beauty", "Fitness", "Travel" , "Food", "Tech", "Gaming", "Health", "Education"];
+
 
 export default function CreateInfluencerPage() {
   const [bio, setBio] = useState("");
@@ -115,7 +117,7 @@ export default function CreateInfluencerPage() {
         <div>
           <p className="font-medium text-slate-700 mb-2">Select Categories</p>
           <div className="flex flex-wrap gap-2">
-            {["Fashion", "Lifestyle", "Beauty", "Fitness", "Travel"].map((cat) => (
+            {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => toggleCategory(cat)}
