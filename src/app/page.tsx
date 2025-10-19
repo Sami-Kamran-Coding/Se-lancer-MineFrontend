@@ -414,12 +414,12 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="flex justify-center"
           >
-            <div className="grid grid-cols-1 xs:grid-cols-2  gap-5 sm:gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2  gap-5 sm:gap-8">
               {["Verified", "Transparent", "Seamless", "Secure"].map((text, i) => (
                 <motion.div
                   key={i}
                   whileHover={{ scale: 1.05 }}
-                  className="w-36 h-36 sm:w-44 sm:h-44 rounded-2xl bg-gradient-to-br from-indigo-600 to-teal-400 shadow-xl flex items-center justify-center text-white font-semibold text-center text-sm sm:text-lg transition-all duration-300"
+                  className="w-60 h-60 sm:w-44 sm:h-44 rounded-2xl bg-gradient-to-br from-indigo-600 to-teal-400 shadow-xl flex items-center justify-center text-white font-semibold text-center text-sm sm:text-lg transition-all duration-300"
                 >
                   {text}
                 </motion.div>
