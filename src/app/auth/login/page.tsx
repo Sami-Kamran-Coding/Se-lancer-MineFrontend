@@ -95,9 +95,7 @@ export default function LoginPage() {
                 className="pl-10 py-2.5"
               />
             </div>
-            <p className="text-xs text-right text-blue-600 mt-1 cursor-pointer hover:underline">
-              Forgot password?
-            </p>
+   
           </div>
         </div>
 

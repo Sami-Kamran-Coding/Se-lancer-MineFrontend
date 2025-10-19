@@ -1,35 +1,31 @@
 export const Footer = () => (
-  <footer className="mt-auto py-8 text-center border-t border-slate-200 bg-gradient-to-r from-slate-50 via-white to-slate-50">
-    <div className="max-w-5xl mx-auto px-4">
-      <p className="text-slate-600 text-sm sm:text-base">
-        © {new Date().getFullYear()}{" "}
-        <span className="font-semibold text-slate-800 hover:text-blue-600 transition-colors duration-300 cursor-pointer">
-          InfluenceHub
-        </span>
-        . All rights reserved.
-      </p>
-      <div className="flex justify-center gap-4 mt-3 text-slate-500">
-        <a
-          href="#"
-          className="hover:text-blue-600 transition-colors duration-300 text-sm"
-        >
-          Privacy Policy
-        </a>
-        <span>•</span>
-        <a
-          href="#"
-          className="hover:text-blue-600 transition-colors duration-300 text-sm"
-        >
-          Terms of Service
-        </a>
-        <span>•</span>
-        <a
-          href="#"
-          className="hover:text-blue-600 transition-colors duration-300 text-sm"
-        >
-          Contact
-        </a>
-      </div>
-    </div>
-  </footer>
+    <footer className="bg-white text-black py-10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div>
+            <div className="font-bold text-lg">InfluenceHub</div>
+            <p className="text-sm text-black mt-2">Connecting brands with creators. Trusted, transparent, and secure.</p>
+          </div>
+
+          <div>
+            <div className="font-semibold">Company</div>
+            <ul className="mt-2 text-sm text-black">
+              <li>About</li>
+              <li>Contact</li>
+              <li>Terms</li>
+              <li>Privacy</li>
+            </ul>
+          </div>
+
+          <div>
+            <div className="font-semibold">Follow</div>
+            <div className="flex gap-3 mt-2">
+              <a href="#" className="text-black">Instagram</a>
+              <a href="#" className="text-black ">YouTube</a>
+              <a href="#" className="text-black ">TikTok</a>
+            </div>
+          </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 mt-8 text-center text-sm text-slate-500">© {new Date().getFullYear()} InfluenceHub — All rights reserved.</div>
+      </footer>
 );

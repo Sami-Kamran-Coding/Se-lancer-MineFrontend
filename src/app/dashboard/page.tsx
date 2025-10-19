@@ -34,7 +34,7 @@ export default function DashboardPage() {
 
   if (!user)
     return (
-      <div className="flex  items-center justify-center min-h-screen bg-gradient-to-br from-indigo-50 to-slate-200">
+      <div className="flex   items-center justify-center min-h-screen bg-gradient-to-br from-indigo-50 to-slate-200">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -46,12 +46,12 @@ export default function DashboardPage() {
     );
 
   return (
-    <div className="flex mt-10 items-center justify-center min-h-screen bg-gradient-to-br from-indigo-50 via-slate-100 to-indigo-200 px-4">
+    <div className="flex  items-center justify-center min-h-screen bg-gradient-to-br from-indigo-50 via-slate-100 to-indigo-200 px-4">
       <motion.div
         initial={{ opacity: 0, y: 25 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-w-lg bg-white/80 backdrop-blur-xl shadow-2xl border border-gray-200 rounded-2xl p-8 space-y-6 text-center"
+        className="w-full mt-20 mb-10 max-w-lg bg-white/80 backdrop-blur-xl shadow-2xl border border-gray-200 rounded-2xl p-8 space-y-6 text-center"
       >
         {/* Header Section */}
         <div className="space-y-2">
