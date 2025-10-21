@@ -283,6 +283,10 @@ import {
   PlusCircle,
   Search,
   Award,
+  Lock,
+  Workflow,
+  ShieldCheck,
+  CheckCircle2,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -313,7 +317,7 @@ export default function HomePage() {
         className="relative z-10 flex mt-10 flex-col items-center text-center text-white px-4 sm:px-8 md:px-12 max-w-4xl"
       >
         {/* Headline */}
-        <h1 className="text-2xl mt-3 sm:text-3xl md:text-5xl lg:text-6xl  font-extrabold leading-tight drop-shadow-xl">
+        <h1 className="text-3xl mt-3 sm:text-4xl md:text-5xl lg:text-6xl  font-extrabold leading-tight drop-shadow-xl">
           Connect Brands with <br className="hidden xs:block" /> Real Influencers
         </h1>
 
@@ -360,74 +364,98 @@ export default function HomePage() {
     </header>
 
       {/* ================= PROBLEM SECTION ================= */}
-      <section className="max-w-6xl mx-auto px-6 lg:px-8 py-20">
+   <section className="max-w-6xl mx-auto px-6 lg:px-8 py-20">
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
+      >
+        {/* Left Content */}
+        <div>
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900">
+            The Problem with Today’s Influencer Marketing
+          </h2>
+          <p className="mt-4 text-slate-600 leading-relaxed text-base sm:text-lg">
+            Brands face opaque metrics, fake followers, and fragmented creator discovery. Collaboration workflows are manual and untraceable.
+          </p>
+
+          <ul className="mt-6 space-y-5 text-slate-700">
+            {[
+              {
+                icon: <Sparkles className="w-5 h-5 text-indigo-500" />,
+                title: "Fake followers & unreliable stats",
+                desc: "Hard to trust reach and engagement numbers across platforms.",
+              },
+              {
+                icon: <Globe className="w-5 h-5 text-indigo-500" />,
+                title: "No single verified directory",
+                desc: "Creators are scattered across platforms with no central source of truth.",
+              },
+              {
+                icon: <MessageCircle className="w-5 h-5 text-indigo-500" />,
+                title: "Complicated collaboration process",
+                desc: "Negotiations and approvals take too long and lack transparency.",
+              },
+            ].map((item, i) => (
+              <li key={i} className="flex items-start gap-3">
+                <span className="mt-1">{item.icon}</span>
+                <div>
+                  <div className="font-semibold">{item.title}</div>
+                  <p className="text-sm text-slate-500">{item.desc}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Right Content – Clean White Cards with Icons */}
         <motion.div
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
+          className="flex justify-center"
         >
-          <div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900">
-              The Problem with Today’s Influencer Marketing
-            </h2>
-            <p className="mt-4 text-slate-600 leading-relaxed text-base sm:text-lg">
-              Brands face opaque metrics, fake followers, and fragmented creator
-              discovery. Collaboration workflows are manual and untraceable.
-            </p>
-
-            <ul className="mt-6 space-y-5 text-slate-700">
-              {[
-                {
-                  icon: <Sparkles className="w-5 h-5 text-indigo-500" />,
-                  title: "Fake followers & unreliable stats",
-                  desc: "Hard to trust reach and engagement numbers across platforms.",
-                },
-                {
-                  icon: <Globe className="w-5 h-5 text-indigo-500" />,
-                  title: "No single verified directory",
-                  desc: "Creators are scattered across platforms with no central source of truth.",
-                },
-                {
-                  icon: <MessageCircle className="w-5 h-5 text-indigo-500" />,
-                  title: "Complicated collaboration process",
-                  desc: "Negotiations and approvals take too long and lack transparency.",
-                },
-              ].map((item, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="mt-1">{item.icon}</span>
-                  <div>
-                    <div className="font-semibold">{item.title}</div>
-                    <p className="text-sm text-slate-500">{item.desc}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-8">
+            {[
+              {
+                icon: <CheckCircle2 className="w-8 h-8 text-indigo-600 mb-3" />,
+                title: "Verified",
+                desc: "Authentic influencers you can trust.",
+              },
+              {
+                icon: <ShieldCheck className="w-8 h-8 text-green-600 mb-3" />,
+                title: "Transparent",
+                desc: "Clear insights and genuine engagement.",
+              },
+              {
+                icon: <Workflow className="w-8 h-8 text-blue-600 mb-3" />,
+                title: "Seamless",
+                desc: "Smooth workflow between brands and creators.",
+              },
+              {
+                icon: <Lock className="w-8 h-8 text-purple-600 mb-3" />,
+                title: "Secure",
+                desc: "Data protection and safe transactions.",
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ scale: 1.05 }}
+                className="w-60 h-60 sm:w-52 sm:h-52 rounded-2xl bg-white border border-gray-200 shadow-lg flex flex-col items-center justify-center text-center p-5 transition-all duration-300"
+              >
+                {item.icon}
+                <h3 className="text-lg font-semibold text-gray-900 mb-1">{item.title}</h3>
+                <p className="text-sm text-gray-600">{item.desc}</p>
+              </motion.div>
+            ))}
           </div>
-
-          {/* Floating Gradient Boxes */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="flex justify-center"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-2  gap-5 sm:gap-8">
-              {["Verified", "Transparent", "Seamless", "Secure"].map((text, i) => (
-                <motion.div
-                  key={i}
-                  whileHover={{ scale: 1.05 }}
-                  className="w-60 h-60 sm:w-44 sm:h-44 rounded-2xl bg-gradient-to-br from-indigo-600 to-teal-400 shadow-xl flex items-center justify-center text-white font-semibold text-center text-sm sm:text-lg transition-all duration-300"
-                >
-                  {text}
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
         </motion.div>
-      </section>
+      </motion.div>
+    </section>
+
 
       {/* ================= SOLUTION SECTION ================= */}
       <section className="bg-white/70 py-20 backdrop-blur-sm">

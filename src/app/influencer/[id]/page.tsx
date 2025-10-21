@@ -87,6 +87,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Instagram, Youtube, Music, Star } from "lucide-react";
+import Image from "next/image";
 
 export default function InfluencerDetailPage() {
   const { id } = useParams();
@@ -124,9 +125,9 @@ export default function InfluencerDetailPage() {
   const user = influencer.userId;
 
   return (
-    <div className="max-w-4xl mx-auto mt-24 px-4">
+    <div className="max-w-4xl mx-auto mt-15 mb-8 px-4">
       {/* Banner */}
-    <div className="relative w-full h-56 rounded-2xl overflow-hidden shadow-md bg-black">
+    <div className="relative w-full h-56 mt-18 rounded-2xl overflow-hidden shadow-md bg-black">
   {influencer.bannerImage ? (
     <img
       src={influencer.bannerImage}
@@ -141,26 +142,35 @@ export default function InfluencerDetailPage() {
   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
 
   {/* Profile Picture */}
-  <div className="absolute top-8 z-40 left-1/12 transform -translate-x-1/2 translate-y-1/2">
-    <img
-      src={user?.profilePicture || "/default-avatar.png"}
-      alt={user?.name || "User"}
-      className="w-32 h-32 rounded-full border-4 border-white shadow-xl object-cover bg-gray-100"
-    />
-  </div>
+  
 </div>
 
-      <Card className="mt-20 p-6 shadow-lg">
+      <Card className="mt-5 p-6 shadow-lg">
         <CardContent className="space-y-6">
           {/* Name, Bio & Rating */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div className="flex flex-col  items-center justify-between gap-4">
             <div>
-              <h1 className="text-3xl font-bold flex items-center gap-2">
-                {user?.name || "Unnamed Influencer"}
-                {influencer.verified && (
-                  <span className="text-blue-500 text-xl">✔</span>
-                )}
-              </h1>
+         <div className="flex flex-col items-center text-center relative mt-20">
+  {/* Profile Picture */}
+  <div className="w-36 h-36 -mt-20 z-40">
+    <Image
+      src={user?.profilePicture || "/default-avatar.png"}
+      alt={user?.name || "User"}
+      width={140}
+      height={140}
+      className="rounded-full border-4 border-white shadow-lg object-cover bg-gray-100 mx-auto"
+    />
+  </div>
+
+  {/* Name + Verified */}
+  <h1 className="text-3xl font-bold flex items-center justify-center gap-2 mt-4">
+    {user?.name || "Unnamed Influencer"}
+    {influencer.verified && (
+      <span className="text-blue-500 text-xl">✔</span>
+    )}
+  </h1>
+</div>
+
               <p className="text-gray-600 mt-1">
                 {influencer.bio || "No bio provided yet."}
               </p>
